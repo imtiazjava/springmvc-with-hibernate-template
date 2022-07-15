@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -38,5 +39,13 @@ public class EmployeeController {
 		System.out.println(list);
 		model.addAttribute("list",list);
 		return "emp-details";
+	}
+	
+	@RequestMapping(value="/employee/{id}",method =RequestMethod.GET)
+	public String deleteById(@PathVariable("id") int id) {
+		  if(this.employeeDAO.deleteById(id))
+			  return "emp-details";
+		  else
+			  return "home";
 	}
 }

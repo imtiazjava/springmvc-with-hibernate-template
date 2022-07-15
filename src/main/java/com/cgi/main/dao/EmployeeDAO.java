@@ -30,4 +30,10 @@ public class EmployeeDAO {
 		
 		return template.loadAll(Employee.class);
 	}
+	
+	@Transactional
+	public boolean deleteById(int id) {
+		template.delete(template.load(Employee.class, id));
+		return true;
+	}
 }
